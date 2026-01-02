@@ -1,16 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  output: "export", // necessary for static export
+  output: 'export', // This enables static export
+  
   images: {
-    domains: [
-      "images.unsplash.com",
-      "your-other-domain.com",
-      "static.pw.live",
-      "upload.wikimedia.org",
-      "wpvip.edutopia.org"
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      // Add other domains you need
     ],
+    unoptimized: true, // REQUIRED for static export
   },
-};
+  
+  // Optional: Add trailing slash for better compatibility
+  trailingSlash: true,
+  
+  // Optional: Set base path if deploying to subdirectory
+  // basePath: '/your-repo-name',
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
